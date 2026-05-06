@@ -11,6 +11,7 @@ export const onlineClusterPayload: Cluster = {
   bytesOutPerSec: 9.314,
   readOnly: false,
   features: [],
+  bootstrapServers: 'host1:9092,host2:9092',
 };
 export const offlineClusterPayload: Cluster = {
   name: 'local',
@@ -23,6 +24,7 @@ export const offlineClusterPayload: Cluster = {
   bytesOutPerSec: 4.14,
   features: [],
   readOnly: true,
+  bootstrapServers: 'offline-host:9092',
 };
 
 export const clustersPayload: Cluster[] = [
