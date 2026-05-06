@@ -46,6 +46,8 @@ model Cluster {
   readOnly?: boolean;
   version?: string;
   features?: ClusterFeature[];
+  @doc("Comma-separated host:port list the cluster was configured with.")
+  bootstrapServers?: string;
 }
 
 alias ClusterFeature =

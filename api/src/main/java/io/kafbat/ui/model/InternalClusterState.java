@@ -11,6 +11,7 @@ import org.apache.kafka.common.Node;
 @Data
 public class InternalClusterState {
   private String name;
+  private String bootstrapServers;
   private ServerStatusDTO status;
   private MetricsCollectionErrorDTO lastError;
   private Integer topicCount;
@@ -28,8 +29,14 @@ public class InternalClusterState {
   private BigDecimal bytesOutPerSec;
   private Boolean readOnly;
 
+  /**
+   * Snapshots a cluster's static configuration ({@link KafkaCluster}) and its
+   * latest scraped {@link Statistics} into the shape consumed by the cluster
+   * DTO mapper.
+   */
   public InternalClusterState(KafkaCluster cluster, Statistics statistics) {
     name = cluster.getName();
+    bootstrapServers = cluster.getBootstrapServers();
     status = statistics.getStatus();
     lastError = Optional.ofNullable(statistics.getLastKafkaException())
         .map(e -> new MetricsCollectionErrorDTO()
